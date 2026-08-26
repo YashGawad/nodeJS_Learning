@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((req, res) => {
   console.log(req.url, req.method, req.headers);
@@ -13,14 +14,19 @@ const server = http.createServer((req, res) => {
     );
     res.write('<input type="radio" id="male" name="gender" value="male">');
     res.write('<label for="male">Male</label>');
-    res.write(
-      '<input type="radio" id="female" name="gender" value="female">',
-    );
+    res.write('<input type="radio" id="female" name="gender" value="female">');
     res.write('<label for="female">Female</label><br>');
-    res.write('submit <input type="submit" value="Submit">');
+    res.write('<input type="submit" value="Submit">');
     res.write("</form>");
     res.write("</HTML>");
     return res.end();
+  } else if (
+    req.url.toLocaleLowerCase() === "/submit-details" &&
+    req.method === "POST"
+  ) {
+    fs.writeFileSync("user.txt", "Yash Gawad");
+    res.statusCode = 302;
+    res.setHeader("Location", "/");
   }
   res.setHeader("Content-Type", "text/html");
   res.write("<HTML>");
