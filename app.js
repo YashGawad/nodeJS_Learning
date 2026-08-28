@@ -49,7 +49,7 @@ const server = http.createServer((req, res) => {
   res.setHeader("Content-Type", "text/html");
   res.write("<HTML>");
   res.write("<Head><Title>nodeJS</Title></Head>");
-  res.write("<body><h1>Learning NodeJS</h1></body>");
+  res.write("<body><h1>Learning nodeJS and creating projects</h1></body>");
   res.write("</HTML>");
 });
 
