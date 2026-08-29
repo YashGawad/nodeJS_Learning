@@ -6,7 +6,7 @@ const server = http.createServer((req, res) => {
     res.setHeader("content-type", "text/html");
     res.write("<HTML>");
     res.write("<Head><Title>Navigation</Title></Head>");
-    res.write("<body>");
+    res.write("<head>");
     res.write('<header class="d-flex justify-content-center py-3">');
     res.write('  <ul class="nav nav-pills">');
     res.write('    <li class="nav-item">');
@@ -37,7 +37,7 @@ const server = http.createServer((req, res) => {
     res.write("      </a>");
     res.write("    </li> ");
     res.write("  </ul>");
-    res.write("</body>");
+    res.write("</head>");
     res.write("</HTML>");
     return res.end();
   } else if (req.url.toLocaleLowerCase() === "/home") {
