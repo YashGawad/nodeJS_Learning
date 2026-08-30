@@ -35,11 +35,13 @@ const server = http.createServer((req, res) => {
       console.log(fullBody);
 
       const params = new URLSearchParams(fullBody);
-      const bodyObject = {};
-      for (const [key, val] of params.entries()) {
-        bodyObject[key] = val;
-      }
+      // const bodyObject = {};
+      // for (const [key, val] of params.entries()) {
+      //   bodyObject[key] = val;
+      // }
+      const bodyObject = Object.fromEntries(params);
       console.log(bodyObject);
+      fs.writeFileSync("user.txt", JSON.stringify(bodyObject));
     });
 
     fs.writeFileSync("user.txt", "Yash Gawad");
