@@ -16,8 +16,8 @@ const addition = (req, res) => {
     const sum = parseInt(bodyObject.number1) + parseInt(bodyObject.number2);
     console.log(sum);
 
-    res.setHeader("Content-type", "text/html")
-    res.write(`<h1>Your result is ${sum}`);
+    res.setHeader("Content-type", "text/html");
+    res.write(`<h1>Result of your additon is ${sum}`);
     res.end();
   });
 };
