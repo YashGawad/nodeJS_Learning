@@ -2,6 +2,7 @@ const fs = require("fs");
 
 const addition = (req, res) => {
   const body = [];
+  let sum;
   req.on("data", (chunk) => {
     body.push(chunk);
   });
@@ -13,9 +14,9 @@ const addition = (req, res) => {
     const bodyObject = Object.fromEntries(params);
     console.log(bodyObject);
     fs.writeFileSync("user.txt", JSON.stringify(bodyObject));
-    const sum = parseInt(bodyObject.number1) + parseInt(bodyObject.number2);
+    sum = parseInt(bodyObject.number1) + parseInt(bodyObject.number2);
     console.log(sum);
-
+    res.statusCode = 302;
     res.setHeader("Content-type", "text/html");
     res.write(`<h1>Result of your additon is ${sum}`);
     res.end();
