@@ -40,21 +40,23 @@ const userRequestHandler = (req, res) => {
       // }
       const bodyObject = Object.fromEntries(params);
       console.log(bodyObject);
-      fs.writeFile("user.txt", JSON.stringify(bodyObject),(err) => {
-        if(err){
+      fs.writeFile("user.txt", JSON.stringify(bodyObject), (err) => {
+        if (err) {
           console.log(err);
         }
       });
+      res.statusCode = 302;
+      res.setHeader("Location", "/");
+      return res.end();
     });
-
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
+  } else {
+    res.setHeader("Content-Type", "text/html");
+    res.write("<HTML>");
+    res.write("<Head><Title>nodeJS</Title></Head>");
+    res.write("<body><h1>Learning nodeJS and creating projects</h1></body>");
+    res.write("</HTML>");
+    res.end();
   }
-  res.setHeader("Content-Type", "text/html");
-  res.write("<HTML>");
-  res.write("<Head><Title>nodeJS</Title></Head>");
-  res.write("<body><h1>Learning nodeJS and creating projects</h1></body>");
-  res.write("</HTML>");
 };
 
 module.exports = userRequestHandler;
