@@ -13,7 +13,11 @@ const addition = (req, res) => {
     const params = new URLSearchParams(fullBody);
     const bodyObject = Object.fromEntries(params);
     console.log(bodyObject);
-    fs.writeFileSync("user.txt", JSON.stringify(bodyObject));
+    fs.writeFile("user.txt", JSON.stringify(bodyObject), (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
     sum = parseInt(bodyObject.number1) + parseInt(bodyObject.number2);
     console.log(sum);
     res.statusCode = 302;

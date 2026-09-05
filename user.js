@@ -40,7 +40,11 @@ const userRequestHandler = (req, res) => {
       // }
       const bodyObject = Object.fromEntries(params);
       console.log(bodyObject);
-      fs.writeFileSync("user.txt", JSON.stringify(bodyObject));
+      fs.writeFile("user.txt", JSON.stringify(bodyObject),(err) => {
+        if(err){
+          console.log(err);
+        }
+      });
     });
 
     res.statusCode = 302;
